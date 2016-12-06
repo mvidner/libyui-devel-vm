@@ -2,9 +2,9 @@
 set -eu
 
 echo "PROVISIONING"
-
-sudo zypper in -y screen
-sudo zypper in --no-recommends osc build \
+# no sudo needed in docker image
+SUDO=
+$SUDO zypper --non-interactive in --no-recommends osc build \
      make cmake boost-devel gcc-c++ pkg-config doxygen sudo \
      libqt5-qtbase-devel libqt5-qtsvg-devel libqt5-qtx11extras-devel \
      fontconfig-devel \
@@ -14,15 +14,18 @@ sudo zypper in --no-recommends osc build \
      swig ruby-devel python-devel mono-devel \
      yast2-devtools yast2-core-devel docbook-xsl-stylesheets
 
-mkdir git
-ln -snf git svn                 # old habits die hard
-cd git
-
 #git clone https://github.com/libyui/libyui-rake
 gem install --user-install libyui-rake
 
-PATH=.:$PATH
+exit
+
 . functions.sh
+
+$SUDO zypper --non-interactive in screen
+
+mkdir git
+ln -snf git svn                 # old habits die hard
+cd git
 
 build_it libyui
 
