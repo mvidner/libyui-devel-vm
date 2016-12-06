@@ -25,13 +25,14 @@ build_it() {
         git config --add remote.$REMOTE.fetch \
             "+refs/pull/*/head:refs/remotes/$REMOTE/pr/*"
         if test -f ./bootstrap.sh; then
-           mkdir build
-           cd build
-           cmake .. -DCMAKE_BUILD_TYPE=RELWITHDEBINFO
+            ./bootstrap.sh
+            mkdir -p build
+            cd build
+            cmake .. -DCMAKE_BUILD_TYPE=RELWITHDEBINFO
         else
             make -f Makefile.cvs
         fi
-        make && sudo make install # make test
+        make -j$(nproc) && sudo make install # make test
     )
 }
 

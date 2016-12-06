@@ -21,7 +21,8 @@ exit
 
 . functions.sh
 
-$SUDO zypper --non-interactive in screen
+$SUDO zypper --non-interactive in screen vim
+$SUDO zypper --non-interactive in git-core
 
 mkdir git
 ln -snf git svn                 # old habits die hard
