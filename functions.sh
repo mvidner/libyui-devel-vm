@@ -31,6 +31,7 @@ build_it() {
             cmake .. -DCMAKE_BUILD_TYPE=RELWITHDEBINFO
         else
             make -f Makefile.cvs
+            cd build
         fi
         make -j$(nproc) && sudo make install # make test
     )

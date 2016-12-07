@@ -21,7 +21,7 @@ exit
 
 . functions.sh
 
-$SUDO zypper --non-interactive in screen vim
+$SUDO zypper --non-interactive in screen vim aaa_base
 $SUDO zypper --non-interactive in git-core
 
 mkdir git
@@ -35,9 +35,10 @@ build_it libyui-ncurses-pkg
 
 build_it libyui-qt
 build_it libyui-qt-pkg
+build_it libyui-qt-graph
 
-build_it libyui-gtk
-build_it libyui-gtk-pkg
+#build_it libyui-gtk
+#build_it libyui-gtk-pkg
 
 build_it libyui-bindings
 build_it https://github.com/yast/yast-ycp-ui-bindings
